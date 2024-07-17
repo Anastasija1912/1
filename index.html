@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашнее задание на 16.07.2024 Балашова А.М.</title>
+
+</head>
+<body>
+    <h2>
+        Калькулятор
+    </h2>
+    <div>
+        <label for="oper">первое число</label>
+        <input id="oper" type="number" value="0" onchange="calc()">
+    </div>
+    <div>
+        <label for="oper1">второе число</label>
+        <input id="oper1" type="number" value="0" onchange="calc()">
+    </div>
+    <div>
+        <select id = "operation" onchange="calc()">
+            <option>Сложить</option>
+            <option>Вычесть</option>
+            <option>Умножить</option>
+            <option>Разделить</option>
+            <option>Возвести в степень</option>
+            <option>Извлечь корень</option>
+        </select>
+    </div>
+    <p>Итого:<span id="res"></span></p>
+
+  <h2>
+      расчет месяцев между датами
+  </h2>
+
+  <div>
+      <label for="birthday">дата</label>
+      <input id="birthday" type="date" value="">
+  </div>
+  <div>
+      <input type="button" value="Отправить" onclick="send()">
+  </div>
+  <p>Результат:<span id="res2"></span></p>
+
+
+    <script>
+        function calc()
+        {
+            let x = parseInt(document.getElementById("oper").value);
+            let y = parseInt(document.getElementById("oper1").value);
+            let result = 0;
+            let operation = document.getElementById("operation").value;
+            switch(operation){
+                case "Сложить":
+                    result = x + y;
+                    break;
+                case "Вычесть":
+                    result = x - y;
+                    break;
+                case "Умножить":
+                    result = x * y;
+                    break;
+                case "Разделить":
+                    result = x / y;
+                    break;
+                case "Возвести в степень":
+                result = x ** y;
+                break;
+                case "Извлечь корень":
+                result =  x ** (1/y);
+                break;
+                default:
+                    result = "Error!";
+                    break;
+            }
+
+            if (result % 1 != 0)
+            {
+                result = result.toFixed(2);
+            }
+            document.getElementById("res").innerText = result;
+        }
+
+        function send()
+        {
+            let date = document.getElementById("birthday").value;
+
+            let result = ` прошло ${Math.floor((new Date(Date.now())- new Date(date))/1000/60/60/24/30)} месяца(ев)`;
+            document.getElementById('res2').innerText = result;
+        }
+
+
+    </script>
+</body>
+</html>
